@@ -26,7 +26,7 @@ public class SlvTaskQueue {
     var tasks : [SlvTask]
     var taskSelected : Int
     var queueComplete : Bool
-    var confirmedCompletion : Bool
+    public var confirmedCompletion : Bool
     
     public init() {
         tasks = []
