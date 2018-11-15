@@ -13,21 +13,21 @@ public class SlvGenericTask : SlvTask {
     var body : () -> Void
     var description : String
     
-    init(desc : String = "Generic Task", continuesTo : SlvTaskContinueOption, does : @escaping () -> Void) {
+    public init(desc : String = "Generic Task", continuesTo : SlvTaskContinueOption, does : @escaping () -> Void) {
         contOpt = continuesTo
         body = does
         description = desc
     }
     
-    func execute() {
+    public func execute() {
         body()
     }
     
-    func getContinueOption() -> SlvTaskContinueOption {
+    public func getContinueOption() -> SlvTaskContinueOption {
         return contOpt
     }
     
-    func getDebugDescription() -> String {
+    public func getDebugDescription() -> String {
         return description
     }
 }

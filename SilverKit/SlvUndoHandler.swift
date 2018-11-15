@@ -17,21 +17,21 @@ public protocol SlvUndoableAction {
 
 public class SlvUndoableActionGroup : SlvUndoableAction {
     var actions : [SlvUndoableAction]
-    var actionID: String
-    var isUndoCombinable: Bool = false
+    public var actionID: String
+    public var isUndoCombinable: Bool = false
     
-    init(_ acts:[SlvUndoableAction]){
+    public init(_ acts:[SlvUndoableAction]){
         actions = acts
         actionID = acts[0].actionID + ":combined"
     }
     
-    func executeUndo() {
+    public func executeUndo() {
         for act in actions{
             act.executeUndo()
         }
     }
     
-    func executeRedo() {
+    public func executeRedo() {
         for act in actions {
             act.executeRedo()
         }
@@ -43,13 +43,13 @@ public class SlvUndoHandler {
     var availableToRedo : [SlvUndoableAction]
     var maximumQueueSize : Int
     
-    init (maxSize:Int){
+    public init (maxSize:Int){
         queuedActions = []
         availableToRedo = []
         maximumQueueSize = maxSize
     }
     
-    func actionHappened(_ action : SlvUndoableAction) {
+    public func actionHappened(_ action : SlvUndoableAction) {
         if queuedActions.count == maximumQueueSize {
             var temp = Array(queuedActions[1..<maximumQueueSize])
             temp.append(action)
@@ -61,19 +61,19 @@ public class SlvUndoHandler {
         availableToRedo.removeAll()
     }
     
-    func undo() {
+    public func undo() {
         if let thisAction = queuedActions.popLast()  {
             thisAction.executeUndo()
             availableToRedo.append(thisAction)
         }
     }
-    func redo() {
+    public func redo() {
         if let thisAction = availableToRedo.popLast() {
             thisAction.executeRedo()
             queuedActions.append(thisAction)
         }
     }
-    func combineRecent() {
+    public func combineRecent() {
         var comboID = ""
         if let lastAction = queuedActions.last {
             if lastAction.isUndoCombinable {

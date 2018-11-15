@@ -12,23 +12,23 @@ infix operator § : MultiplicationPrecedence
 
 public extension String {
     
-    var length: Int {
+    public var length: Int {
         return self.count
     }
     
-    subscript (i: Int) -> String {
-        return self[Range(i ..< i + 1)]
+    public subscript (i: Int) -> String {
+        return self[i..<(i + 1)]
     }
     
-    func substring(from: Int) -> String {
-        return self[Range(min(from, length) ..< length)]
+    public func substring(from: Int) -> String {
+        return self[min(from, length) ..< length]
     }
     
-    func substring(to: Int) -> String {
-        return self[Range(0 ..< max(0, to))]
+    public func substring(to: Int) -> String {
+        return self[0 ..< max(0, to)]
     }
     
-    subscript (r: Range<Int>) -> String {
+    public subscript (r: Range<Int>) -> String {
         let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
                                             upper: min(length, max(0, r.upperBound))))
         let start = index(startIndex, offsetBy: range.lowerBound)
@@ -38,15 +38,15 @@ public extension String {
         return String(t1)
     }
     
-    func split (_ reg:String) -> [String]{
+    public func split (_ reg:String) -> [String]{
         return self.components(separatedBy: reg)
     }
     
-    static func § (lhs : String, rhs : String) -> [String] {
+    public static func § (lhs : String, rhs : String) -> [String] {
         return lhs.split(rhs)
     }
     
-    func doesMatch(regex: String) -> Bool {
+    public func doesMatch(regex: String) -> Bool {
         do {
             let regex = try NSRegularExpression(pattern: regex)
             let results = regex.matches(in: self,

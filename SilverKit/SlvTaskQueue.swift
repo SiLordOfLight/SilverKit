@@ -28,18 +28,18 @@ public class SlvTaskQueue {
     var queueComplete : Bool
     var confirmedCompletion : Bool
     
-    init() {
+    public init() {
         tasks = []
         taskSelected = 0
         queueComplete = false
         confirmedCompletion = false
     }
     
-    func addTask(_ tsk:SlvTask) {
+    public func addTask(_ tsk:SlvTask) {
         tasks.append(tsk)
     }
     
-    func executeAll() {
+    public func executeAll() {
         print("Tasks in queue: ")
         for i in 0..<tasks.count {
             print("\tTask #\(i): \(tasks[i].getDebugDescription()) -> \(tasks[i].getContinueOption().rawValue)")
@@ -72,7 +72,7 @@ public class SlvTaskQueue {
         }
     }
     
-    func continueQueue() ->  () -> Void{
+    fileprivate func continueQueue() ->  () -> Void{
         if queueComplete {
             return { return }
         }
