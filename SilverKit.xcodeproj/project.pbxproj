@@ -8,12 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		236C8A68219D1380008E518B /* SilverKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 236C8A66219D1380008E518B /* SilverKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		236C8A76219D144A008E518B /* SlvUndoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A6E219D1449008E518B /* SlvUndoHandler.swift */; };
+		236C8A77219D144A008E518B /* SlvTaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A6F219D1449008E518B /* SlvTaskQueue.swift */; };
+		236C8A78219D144A008E518B /* SlvGenericTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A70219D1449008E518B /* SlvGenericTask.swift */; };
+		236C8A79219D144A008E518B /* GateOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A71219D1449008E518B /* GateOperators.swift */; };
+		236C8A7A219D144A008E518B /* SlvDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A72219D1449008E518B /* SlvDownloadHelper.swift */; };
+		236C8A7B219D144A008E518B /* SlvDownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A73219D1449008E518B /* SlvDownloadTask.swift */; };
+		236C8A7C219D144A008E518B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A74219D1449008E518B /* StringExtension.swift */; };
+		236C8A7D219D144A008E518B /* SlvStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236C8A75219D144A008E518B /* SlvStorageHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		236C8A63219D1380008E518B /* SilverKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SilverKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		236C8A66219D1380008E518B /* SilverKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SilverKit.h; sourceTree = "<group>"; };
 		236C8A67219D1380008E518B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		236C8A6E219D1449008E518B /* SlvUndoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlvUndoHandler.swift; sourceTree = "<group>"; };
+		236C8A6F219D1449008E518B /* SlvTaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlvTaskQueue.swift; sourceTree = "<group>"; };
+		236C8A70219D1449008E518B /* SlvGenericTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlvGenericTask.swift; sourceTree = "<group>"; };
+		236C8A71219D1449008E518B /* GateOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateOperators.swift; sourceTree = "<group>"; };
+		236C8A72219D1449008E518B /* SlvDownloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlvDownloadHelper.swift; sourceTree = "<group>"; };
+		236C8A73219D1449008E518B /* SlvDownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlvDownloadTask.swift; sourceTree = "<group>"; };
+		236C8A74219D1449008E518B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		236C8A75219D144A008E518B /* SlvStorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlvStorageHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +62,14 @@
 		236C8A65219D1380008E518B /* SilverKit */ = {
 			isa = PBXGroup;
 			children = (
+				236C8A72219D1449008E518B /* SlvDownloadHelper.swift */,
+				236C8A71219D1449008E518B /* GateOperators.swift */,
+				236C8A73219D1449008E518B /* SlvDownloadTask.swift */,
+				236C8A70219D1449008E518B /* SlvGenericTask.swift */,
+				236C8A75219D144A008E518B /* SlvStorageHelper.swift */,
+				236C8A74219D1449008E518B /* StringExtension.swift */,
+				236C8A6F219D1449008E518B /* SlvTaskQueue.swift */,
+				236C8A6E219D1449008E518B /* SlvUndoHandler.swift */,
 				236C8A66219D1380008E518B /* SilverKit.h */,
 				236C8A67219D1380008E518B /* Info.plist */,
 			);
@@ -95,6 +119,7 @@
 				TargetAttributes = {
 					236C8A62219D1380008E518B = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -130,6 +155,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				236C8A76219D144A008E518B /* SlvUndoHandler.swift in Sources */,
+				236C8A7C219D144A008E518B /* StringExtension.swift in Sources */,
+				236C8A78219D144A008E518B /* SlvGenericTask.swift in Sources */,
+				236C8A7D219D144A008E518B /* SlvStorageHelper.swift in Sources */,
+				236C8A79219D144A008E518B /* GateOperators.swift in Sources */,
+				236C8A7B219D144A008E518B /* SlvDownloadTask.swift in Sources */,
+				236C8A7A219D144A008E518B /* SlvDownloadHelper.swift in Sources */,
+				236C8A77219D144A008E518B /* SlvTaskQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +294,7 @@
 		236C8A6C219D1380008E518B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -277,6 +311,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jake.SilverKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +320,7 @@
 		236C8A6D219D1380008E518B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
