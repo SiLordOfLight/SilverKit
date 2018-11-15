@@ -13,7 +13,7 @@ infix operator !| : MultiplicationPrecedence
 infix operator !& : MultiplicationPrecedence
 infix operator !* : MultiplicationPrecedence
 
-extension Bool {
+public extension Bool {
     static func *| (lhs : Bool, rhs : Bool) -> Bool {
         return ( lhs || rhs ) && !( lhs && rhs )
     }

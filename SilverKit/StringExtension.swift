@@ -10,7 +10,7 @@ import Foundation
 
 infix operator § : MultiplicationPrecedence
 
-extension String {
+public extension String {
     
     var length: Int {
         return self.count

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SlvGenericTask : SlvTask {
+public class SlvGenericTask : SlvTask {
     var contOpt : SlvTaskContinueOption
     var body : () -> Void
     var description : String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SlvDownloadHelper {
+public class SlvDownloadHelper {
     static func downloadFile(from srcUrl:URL, to destFile:String, then completion:@escaping () -> Void){
         // Create destination URL
         let documentsUrl:URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum SlvTaskContinueOption : String {
+public enum SlvTaskContinueOption : String {
     case toBackground = "continue to another background task"
     case toUI = "continue to a UI task"
     case end = "end queue"
 }
 
-protocol SlvTask {
+public protocol SlvTask {
     func execute()
     
     func getDebugDescription() -> String
@@ -22,7 +22,7 @@ protocol SlvTask {
     func getContinueOption() -> SlvTaskContinueOption
 }
 
-class SlvTaskQueue {
+public class SlvTaskQueue {
     var tasks : [SlvTask]
     var taskSelected : Int
     var queueComplete : Bool

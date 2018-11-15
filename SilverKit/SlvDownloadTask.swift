@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SlvDownloadTask : SlvTask{
+public class SlvDownloadTask : SlvTask{
     var url : URL
     var dest : String
     var next : SlvTaskContinueOption

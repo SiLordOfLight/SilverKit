@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol SlvUndoableAction {
+public protocol SlvUndoableAction {
     var isUndoCombinable : Bool {get}
     var actionID : String {get}
     func executeUndo()
     func executeRedo()
 }
 
-class SlvUndoableActionGroup : SlvUndoableAction {
+public class SlvUndoableActionGroup : SlvUndoableAction {
     var actions : [SlvUndoableAction]
     var actionID: String
     var isUndoCombinable: Bool = false
@@ -38,7 +38,7 @@ class SlvUndoableActionGroup : SlvUndoableAction {
     }
 }
 
-class SlvUndoHandler {
+public class SlvUndoHandler {
     var queuedActions : [SlvUndoableAction]
     var availableToRedo : [SlvUndoableAction]
     var maximumQueueSize : Int
