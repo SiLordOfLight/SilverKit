@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// An action that can be undone and redone
+/// - Author: Jake Trimble
+/// - Version: 1.0.0
 public protocol SlvUndoableAction {
     var isUndoCombinable : Bool {get}
     var actionID : String {get}
@@ -15,6 +18,9 @@ public protocol SlvUndoableAction {
     func executeRedo()
 }
 
+/// A group of undoable actions that have been combined into a single action
+/// - Author: Jake Trimble
+/// - Version: 1.0.0
 public class SlvUndoableActionGroup : SlvUndoableAction {
     var actions : [SlvUndoableAction]
     public var actionID: String
@@ -38,44 +44,56 @@ public class SlvUndoableActionGroup : SlvUndoableAction {
     }
 }
 
+/// A handler for storing a queue of actions to undo/redo
+/// - Author: Jake Trimble
+/// - Version: 1.0.0
 public class SlvUndoHandler {
-    var queuedActions : [SlvUndoableAction]
-    var availableToRedo : [SlvUndoableAction]
+    var undoQueue : [SlvUndoableAction]
+    var redoQueue : [SlvUndoableAction]
     var maximumQueueSize : Int
     
+    /// Creates an empty undo/redo queue
+    ///
+    /// - Parameter maxSize: The maximum size of the queue, at which point the oldest actions are discarded
     public init (maxSize:Int){
-        queuedActions = []
-        availableToRedo = []
+        undoQueue = []
+        redoQueue = []
         maximumQueueSize = maxSize
     }
     
+    /// Adds an action to the undo queue and clears the redo queue
     public func actionHappened(_ action : SlvUndoableAction) {
-        if queuedActions.count == maximumQueueSize {
-            var temp = Array(queuedActions[1..<maximumQueueSize])
+        if undoQueue.count == maximumQueueSize {
+            var temp = Array(undoQueue[1..<maximumQueueSize])
             temp.append(action)
-            queuedActions = temp
+            undoQueue = temp
         }else {
-            queuedActions.append(action)
+            undoQueue.append(action)
         }
         
-        availableToRedo.removeAll()
+        redoQueue.removeAll()
     }
     
+    /// Executes the top action in the undo queue and moves it to the redo queue
     public func undo() {
-        if let thisAction = queuedActions.popLast()  {
+        if let thisAction = undoQueue.popLast()  {
             thisAction.executeUndo()
-            availableToRedo.append(thisAction)
+            redoQueue.append(thisAction)
         }
     }
+    
+    /// Executes the top action in the redo queue and moves it to the undo queue
     public func redo() {
-        if let thisAction = availableToRedo.popLast() {
+        if let thisAction = redoQueue.popLast() {
             thisAction.executeRedo()
-            queuedActions.append(thisAction)
+            undoQueue.append(thisAction)
         }
     }
+    
+    /// Checks through the redo queue from the top and combines all similar actions into a `SlvUndoableActionGroup`
     public func combineRecent() {
         var comboID = ""
-        if let lastAction = queuedActions.last {
+        if let lastAction = undoQueue.last {
             if lastAction.isUndoCombinable {
                 comboID = lastAction.actionID
             } else {
@@ -86,10 +104,10 @@ public class SlvUndoHandler {
         }
         var result : [SlvUndoableAction] = []
         while true {
-            if let lastAct = queuedActions.last {
+            if let lastAct = undoQueue.last {
                 if lastAct.actionID == comboID {
                     result.append(lastAct)
-                    queuedActions.popLast()
+                    undoQueue.popLast()
                 } else {
                     break
                 }
@@ -99,7 +117,7 @@ public class SlvUndoHandler {
             
             if result.count > 0 {
                 let combined = SlvUndoableActionGroup(result)
-                queuedActions.append(combined)
+                undoQueue.append(combined)
             }
         }
     }

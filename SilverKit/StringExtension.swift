@@ -12,6 +12,7 @@ infix operator § : MultiplicationPrecedence
 
 public extension String {
     
+    /// Because nobody likes .count
     public var length: Int {
         return self.count
     }
@@ -20,10 +21,12 @@ public extension String {
         return self[i..<(i + 1)]
     }
     
+    /// Returns a segment of the string from the given index to the end
     public func substring(from: Int) -> String {
         return self[min(from, length) ..< length]
     }
     
+    /// Returns a segment of the string from the beginning to the given index
     public func substring(to: Int) -> String {
         return self[0 ..< max(0, to)]
     }
@@ -46,6 +49,7 @@ public extension String {
         return lhs.split(rhs)
     }
     
+    /// Determines whether this String conforms to the given Regular Expression
     public func doesMatch(regex: String) -> Bool {
         do {
             let regex = try NSRegularExpression(pattern: regex)
@@ -58,6 +62,7 @@ public extension String {
         }
     }
     
+    /// Returns all of the indicies in this string of the specified character
     func indices(of character:String) -> [Int] {
         var out:[Int] = []
         

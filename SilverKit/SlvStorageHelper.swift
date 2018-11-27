@@ -13,10 +13,10 @@ public class SlvStorageHelper {
     fileprivate init() { }
     
     public enum Directory {
-        // Only documents and other data that is user-generated, or that cannot otherwise be recreated by your application, should be stored in the <Application_Home>/Documents directory and will be automatically backed up by iCloud.
+        /// The Documents directory of your devivce
         case documents
         
-        // Data that can be downloaded again or regenerated should be stored in the <Application_Home>/Library/Caches directory. Examples of files you should put in the Caches directory include database cache files and downloadable content, such as that used by magazine, newspaper, and map applications.
+        /// The Caches file directory
         case caches
     }
     

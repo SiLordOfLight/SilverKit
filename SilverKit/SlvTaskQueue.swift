@@ -14,6 +14,7 @@ public enum SlvTaskContinueOption : String {
     case end = "end queue"
 }
 
+/// A queued task that is executed completely before continuing to the next
 public protocol SlvTask {
     func execute()
     
@@ -22,6 +23,10 @@ public protocol SlvTask {
     func getContinueOption() -> SlvTaskContinueOption
 }
 
+
+/// A queue of `SlvTask`s that uses DispatchQueues background and main threads to execute data/UI tasks one at a time
+/// - Author: Jake Trimble
+/// - Version: 1.0.0
 public class SlvTaskQueue {
     var tasks : [SlvTask]
     var taskSelected : Int
@@ -35,10 +40,13 @@ public class SlvTaskQueue {
         confirmedCompletion = false
     }
     
+    /// Adds a task to the queue
+    /// - Note: The last task in the queue must have a .end continue option
     public func addTask(_ tsk:SlvTask) {
         tasks.append(tsk)
     }
     
+    /// Executes all tasks in the queue asynchronously, using the main thread for UI tasks and the background thread for data tasks
     public func executeAll() {
         print("Tasks in queue: ")
         for i in 0..<tasks.count {
@@ -59,11 +67,11 @@ public class SlvTaskQueue {
             
             switch self.tasks[0].getContinueOption(){
                 case .toBackground:
-//                    print("<BG Task>")
+
                     DispatchQueue.global(qos: .background).async(execute: self.continueQueue())
                 
                 case .toUI:
-//                    print("<Main Task>")
+
                     DispatchQueue.main.async(execute: self.continueQueue())
                 
                 case .end:
@@ -91,15 +99,15 @@ public class SlvTaskQueue {
             print(">> Executing in the \(self.tasks[temI-1].getContinueOption() == .toBackground ? "Background thread" : "Main thread"): \(self.tasks[temI].getDebugDescription())")
             self.tasks[temI].execute()
             
-//            print(self.tasks[temI].getContinueOption().rawValue)
+
             
             switch self.tasks[temI].getContinueOption(){
                 case .toBackground:
-//                    print("<BG Task>")
+
                     DispatchQueue.global(qos: .background).async(execute: self.continueQueue())
                 
                 case .toUI:
-//                    print("<Main Task>")
+
                     DispatchQueue.main.async(execute: self.continueQueue())
                 
                 case .end:

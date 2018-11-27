@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SilverKit"
-  s.version      = "1.0.2"
+  s.version      = "1.1.0"
   s.summary      = "A collection of helpers and handlers, as well as simplified UI elements."
 
   s.homepage     = "https://github.com/SiLordOfLight/SilverKit"
