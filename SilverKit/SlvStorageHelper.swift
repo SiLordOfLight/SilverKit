@@ -68,7 +68,7 @@ public class SlvStorageHelper {
     ///   - directory: directory where struct data is stored
     ///   - type: struct type (i.e. Message.self)
     /// - Returns: decoded struct model(s) of data
-    public static func retrieve<T: Decodable>(_ fileName: String, from directory: Directory, as type: T.Type) -> T {
+    public static func retrieve<T: Decodable>(_ fileName: String, from directory: Directory, as type: T.Type) -> T? {
         let url = getURL(for: directory).appendingPathComponent(fileName, isDirectory: false)
         
         if !FileManager.default.fileExists(atPath: url.path) {
@@ -82,7 +82,7 @@ public class SlvStorageHelper {
                 return model
             } catch {
                 print(error)
-                fatalError()
+                return nil
             }
         } else {
             fatalError("No data at \(url.path)!")
