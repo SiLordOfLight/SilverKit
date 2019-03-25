@@ -56,7 +56,8 @@ public class SlvStorageHelper {
             }
             FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
         } catch {
-            fatalError(error.localizedDescription)
+            print(error)
+            fatalError()
         }
     }
     
@@ -80,7 +81,8 @@ public class SlvStorageHelper {
                 let model = try decoder.decode(type, from: data)
                 return model
             } catch {
-                fatalError(error.localizedDescription)
+                print(error)
+                fatalError()
             }
         } else {
             fatalError("No data at \(url.path)!")
@@ -96,7 +98,8 @@ public class SlvStorageHelper {
                 try FileManager.default.removeItem(at: fileUrl)
             }
         } catch {
-            fatalError(error.localizedDescription)
+            print(error)
+            fatalError()
         }
     }
     
@@ -107,7 +110,8 @@ public class SlvStorageHelper {
             do {
                 try FileManager.default.removeItem(at: url)
             } catch {
-                fatalError(error.localizedDescription)
+                print(error)
+                fatalError()
             }
         }
     }
